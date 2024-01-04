@@ -10,5 +10,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return (
+    <div className=" bg-slate-100 h-full">
+      <main className="pt-40 pb-20 bg-slate-200"> {children}</main>
+    </div>
+  );
 }
