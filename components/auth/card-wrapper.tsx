@@ -4,6 +4,7 @@ import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { AlignCenter, Github, Twitch } from "lucide-react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface ICardWrapper {
   children: React.ReactNode;
@@ -22,13 +23,18 @@ export const CardWrapper = ({ children, title = "Sign In" }: ICardWrapper) => {
         </CardHeader>
         <CardContent>{children}</CardContent>
         <CardFooter>
-          <div className="flex justify-center items-center gap-x-4">
+          <div className="w-full flex justify-center items-center gap-x-4">
             <Button size={"lg"} variant={"secondary"}>
               <Github className="w-4 h-4" />
             </Button>
             <Button size={"lg"} variant={"secondary"}>
               <Twitch className="w-4 h-4" />
             </Button>
+          </div>
+          <br />
+          <div className="w-full block">
+            {" "}
+            <Link href={"/register"}>注册一个</Link>
           </div>
         </CardFooter>
       </Card>
