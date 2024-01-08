@@ -31,11 +31,6 @@ export const CardWrapper = ({ children, title = "Sign In" }: ICardWrapper) => {
               <Twitch className="w-4 h-4" />
             </Button>
           </div>
-          <br />
-          <div className="w-full block">
-            {" "}
-            <Link href={"/register"}>注册一个</Link>
-          </div>
         </CardFooter>
       </Card>
     </div>

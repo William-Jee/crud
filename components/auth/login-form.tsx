@@ -18,6 +18,7 @@ import { CardWrapper } from "./card-wrapper";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { login } from "@/actions/login";
+import Link from "next/link";
 
 const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -32,45 +33,51 @@ const LoginForm = () => {
   };
   const { handleSubmit, control } = form;
   return (
-    <CardWrapper title="登录">
-      <Form {...form}>
-        <form onSubmit={handleSubmit(submit)}>
-          <div className=" space-y-6">
-            <FormField
-              control={control}
-              name="account"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>用户名</FormLabel>
-                  <FormControl>
-                    <Input placeholder="用户名" {...field} />
-                  </FormControl>
+    <>
+      <CardWrapper title="登录">
+        <Form {...form}>
+          <form onSubmit={handleSubmit(submit)}>
+            <div className=" space-y-6">
+              <FormField
+                control={control}
+                name="account"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>用户名</FormLabel>
+                    <FormControl>
+                      <Input placeholder="用户名" {...field} />
+                    </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>密码</FormLabel>
-                  <FormControl>
-                    <Input placeholder="密码" {...field} type="password" />
-                  </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>密码</FormLabel>
+                    <FormControl>
+                      <Input placeholder="密码" {...field} type="password" />
+                    </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full">
-              登录
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </CardWrapper>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                登录
+              </Button>
+            </div>
+          </form>
+        </Form>
+        <div className="w-full block">
+          {" "}
+          <Link href={"/register"}>注册一个</Link>
+        </div>
+      </CardWrapper>
+    </>
   );
 };
 

@@ -1,5 +1,10 @@
-const Register = () => {
-  return <div>Enter</div>;
-};
+import RegisterForm from "@/components/auth/register-form";
+function Login() {
+  return (
+    <div>
+      <RegisterForm />
+    </div>
+  );
+}
 
-export default Register;
+export default Login;
