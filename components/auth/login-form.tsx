@@ -19,8 +19,10 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { login } from "@/actions/login";
 import Link from "next/link";
+import { useState } from "react";
 
 const LoginForm = () => {
+  const [mes, setMes] = useState<any>("");
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -28,8 +30,10 @@ const LoginForm = () => {
       password: "",
     },
   });
-  const submit = (data: z.infer<typeof LoginSchema>) => {
-    login(data);
+  const submit = async (data: z.infer<typeof LoginSchema>) => {
+    const res = await login(data);
+    // debugger;
+    setMes(res || "");
   };
   const { handleSubmit, control } = form;
   return (
@@ -69,6 +73,7 @@ const LoginForm = () => {
               <Button type="submit" className="w-full">
                 登录
               </Button>
+              {mes.success || mes.error || ""}
             </div>
           </form>
         </Form>

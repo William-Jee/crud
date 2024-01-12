@@ -12,16 +12,17 @@ export const register = async (values: z.infer<typeof LoginSchema>) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
   const existUser = await db.user.findUnique({
     where: {
-      email: account,
+      name: account,
     },
   });
+
   if (existUser)
     return {
       error: "账号已存在",
     };
   await db.user.create({
     data: {
-      email: account,
+      name: account,
       password: hashedPassword,
     },
   });

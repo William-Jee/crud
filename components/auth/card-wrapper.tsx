@@ -5,6 +5,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { AlignCenter, Github, Twitch } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 
 interface ICardWrapper {
   children: React.ReactNode;
@@ -25,7 +27,12 @@ export const CardWrapper = ({ children, title = "Sign In" }: ICardWrapper) => {
         <CardFooter>
           <div className="w-full flex justify-center items-center gap-x-4">
             <Button size={"lg"} variant={"secondary"}>
-              <Github className="w-4 h-4" />
+              <Github
+                className="w-4 h-4"
+                onClick={() => {
+                  signIn("github", { callbackUrl: DEFAULT_LOGIN_REDIRECT });
+                }}
+              />
             </Button>
             <Button size={"lg"} variant={"secondary"}>
               <Twitch className="w-4 h-4" />
